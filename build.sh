@@ -15,9 +15,10 @@ fi
 APP="build/LightsOut.app"
 swift build -c release
 rm -rf "$APP"
-mkdir -p "$APP/Contents/MacOS"
+mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 cp .build/release/LightsOut "$APP/Contents/MacOS/"
 cp Info.plist "$APP/Contents/"
+cp Resources/AppIcon.icns "$APP/Contents/Resources/"
 codesign --force --sign - -r='designated => identifier "com.kasperback.lightsout"' "$APP"
 echo "Built $APP"
 
